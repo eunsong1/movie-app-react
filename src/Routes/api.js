@@ -18,7 +18,7 @@ export const movieApi={
         }
     }),
     search :(keyword)=>api.get(`search/movie`,{
-        parmas:{
+        params:{
             query:encodeURIComponent(keyword)
         }
     })
@@ -33,7 +33,7 @@ export const tvShowApi={
         }
     }),
     search : (keyword)=>api.get(`search/tv`,{
-        parms:{
+        params:{
             query:encodeURIComponent(keyword)
         }
     })

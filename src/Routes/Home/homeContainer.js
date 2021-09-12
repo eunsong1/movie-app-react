@@ -9,14 +9,15 @@ const Homecontainer=()=>{
         nowPlaying : null,
         upcoming : null,
         popular : null,
-        loading : true,
-        error : null
+        
     })
-
+    const [loading, setLonding] = useState(true);
+    const [error, setError] = useState(null);
     useEffect(()=>{
         getMoveData()
     },[])
     const getMoveData = async ()=>{
+        setLonding(true);
         try{
            const {data : {results : nowplaying}}= await movieApi.nowPlaying();
            const {data : {results : upcoming}} = await movieApi.upcoming();
@@ -27,27 +28,25 @@ const Homecontainer=()=>{
            setMVData({
                ...MVData,
                nowPlaying : nowplaying,
-               upcoming : upcoming,
-               popular : popular
+               upcoming,
+               popular
            })
         }
         catch{
+            setError("Can't find movie data" )
             setMVData({
                 ...MVData,
-                error :"Can't find movie data" 
+               
             })
         }finally{
-            setMVData({
-                ...MVData,
-                loading : false
-            })
+          setLonding(false);
         }
         
     }
 
 
     return(
-        <Homepresenter moviedata = {MVData}></Homepresenter>
+        <Homepresenter moviedata = {MVData} loading={loading} error={error}></Homepresenter>
     )
 }
 export default Homecontainer;

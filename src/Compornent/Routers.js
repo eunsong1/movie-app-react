@@ -14,7 +14,7 @@ const Routers=()=>{
                 <Route path="/TV" exact component={TVshow}></Route>
                 <Route path="/search" exact component={Search}></Route>
 
-                <Route path="/tv/:id" exact component={Detail}></Route>
+                <Route path="/TV/:id" exact component={Detail}></Route>
                 <Route path="/movie/:id" exact component={Detail}></Route>
                 <Redirect from ="*" to="/"></Redirect>
             </Switch>

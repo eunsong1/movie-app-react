@@ -8,9 +8,9 @@ const TVshowContainer=()=>{
         topRated : null,
         popular : null,
         airingTody : null,
-        loading : true,
-        error : null
     })
+    const [loading, setLonding] = useState(true);
+    const [error, setError] = useState(null);
     useEffect(()=>{
         getTVData()
     },[])
@@ -27,20 +27,14 @@ const TVshowContainer=()=>{
                 airingTody : airingTody
             })
         }catch{
-            setTVData({
-                ...TVData,
-                error :"Can't find TVshow data"
-            })
+            setError("Can't find movie data" )
         }finally{
-            setTVData({
-                ...TVData,
-                loading :false
-            })
+            setLonding(false)
         }
     }
 
     return(
-        <TVshowPresenter TVD= {TVData}></TVshowPresenter>
+        <TVshowPresenter TVD= {TVData} loading={loading} error={error}></TVshowPresenter>
     )
 }
 export default TVshowContainer;
