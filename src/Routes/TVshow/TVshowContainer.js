@@ -9,7 +9,7 @@ const TVshowContainer=()=>{
         popular : null,
         airingTody : null,
     })
-    const [loading, setLonding] = useState(true);
+    const [loading, setLonding] = useState(null);
     const [error, setError] = useState(null);
     useEffect(()=>{
         getTVData()

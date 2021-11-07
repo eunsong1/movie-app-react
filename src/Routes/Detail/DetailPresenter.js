@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 
 
-const DetailContainer=()=>{
+const DetailContainer=({detaildata, error, loading})=>{
+    useEffect(()=>{
+        console.log(detaildata)
+    },[detaildata])
     return(
         "DetailContainer"
     )
