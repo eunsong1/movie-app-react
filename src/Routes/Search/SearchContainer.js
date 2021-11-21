@@ -20,13 +20,15 @@ const SearchContainer=()=>{
         setloading(true);
 
         try{
-             const{data : {results : moviedata}} = await movieApi.search(keyword);
-             const{data : {results : TVdata}} = await tvShowApi.search(keyword);
-             setsearchdata({
-                 movieData : moviedata,
-                 tvData : TVdata
-             })
+            const{data : {results : moviedata}} = await movieApi.search(keyword);
+            const{data : {results : TVdata}} = await tvShowApi.search(keyword);
+            setsearchdata({
+                movieData : moviedata,
+                tvData : TVdata
+            })
         }catch{
+            
+            
             seterror("Can't find")
         }finally{
             setloading(false);

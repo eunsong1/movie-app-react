@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Section from "../../Compornent/Section";
 import Poster from "../../Compornent/Poster";
 import { Movie_type } from "../../Compornent/Type";
-
+import Message from "../../Compornent/message"
 const Container = styled.div`
 
 `;
@@ -67,11 +67,17 @@ const Homepresenter=({moviedata:{nowPlaying, popular, upcoming}, loading, error}
                             </Poster>
                             )}
                     </Section>
+                    
                 )}
+                {error && <Message text={error} color="red"></Message>}
+                {nowPlaying && nowPlaying.length===0 &&
+                <Message text="No Search Result..." color="yellow"></Message>}
+                
             </Container>
             
         }
-        </>
+        
+    </>
     )
 }
 export default Homepresenter;

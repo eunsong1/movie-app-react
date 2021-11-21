@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from "react";
 import { movieApi,tvShowApi } from "../api";
 import DetailPresenter from "./DetailPresenter"
+import {Movie_type, TV_show} from "../../Compornent/Type"
 
 const DetailContainer=({match: {params : {id}, path},history : {push}})=>{
 
@@ -13,6 +14,7 @@ const DetailContainer=({match: {params : {id}, path},history : {push}})=>{
     },[id])
 
     const [detaildata, setdetaildata]=useState(null);
+    const [type, setType] =useState(null);
     const [Loading, setLoading]=useState(true);
     const [error,seterror]=useState(null);
 
@@ -22,21 +24,21 @@ const DetailContainer=({match: {params : {id}, path},history : {push}})=>{
         try{
             if(path.includes("/movie")){
                 const {data} =await movieApi.detail(id)
-                setdetaildata(data);   
-            }else if(path.includes("/tv")){
+                setdetaildata(data);
+                setType(Movie_type);
+            }else if(path.includes("/TV")){
                 const {data} = await tvShowApi.detail(id);
                 setdetaildata(data);
+                setType(TV_show);
             }
-        }
-        catch{
+        }catch{
             seterror("Can't find anyting...");
-        }
-        finally{
+        }finally{
             setLoading(false);
         }
     }
     return(
-        <DetailPresenter detaildata={detaildata} error={error} loading={Loading}></DetailPresenter>
+        <DetailPresenter detaildata={detaildata} error={error} loading={Loading} type ={type}></DetailPresenter>
     )
 }
 export default DetailContainer;

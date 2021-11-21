@@ -4,6 +4,7 @@ import styled  from "styled-components";
 import Poster from "../../Compornent/Poster";
 import Section from "../../Compornent/Section";
 import { TV_show } from "../../Compornent/Type";
+import Message from "../../Compornent/message";
 const Container = styled.div`
 `;
 
@@ -13,7 +14,7 @@ const TVshowPresenter=({TVD : {topRated, popular, airingTody}, loading, error})=
         {loading ?<Loader />:
             <Container>
                 {topRated && topRated.length > 0 &&
-                <Section tilte="Top Rated">
+                <Section title="Top Rated">
                     {topRated.map(tv=>
                         <Poster
                             key={tv.id}
@@ -27,7 +28,7 @@ const TVshowPresenter=({TVD : {topRated, popular, airingTody}, loading, error})=
                 </Section>
                 }
                 {popular && popular.length > 0 &&
-                <Section tilte="Top Rated">
+                <Section title="Popular">
                     {popular.map(tv=>
                         <Poster
                             key={tv.id}
@@ -41,7 +42,7 @@ const TVshowPresenter=({TVD : {topRated, popular, airingTody}, loading, error})=
                 </Section>
                 }
                 {airingTody && airingTody.length > 0 &&
-                <Section tilte="Top Rated">
+                <Section title="AiringTody">
                     {airingTody.map(tv=>
                         <Poster
                             key={tv.id}
@@ -54,6 +55,9 @@ const TVshowPresenter=({TVD : {topRated, popular, airingTody}, loading, error})=
                         ></Poster>)}
                 </Section>
                 }
+                {error && <Message text={error} color="red"></Message>}
+                { topRated &&  topRated.length === 0  &&
+                <Message text="No Search Result..." color="yellow"></Message>}
             </Container>
             }
             

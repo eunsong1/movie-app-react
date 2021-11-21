@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Loader from "../../Compornent/Loader";
 import Poster from "../../Compornent/Poster";
 import { TV_show, Movie_type } from "../../Compornent/Type";
-
+import Massage from "../../Compornent/message";
 
 const Container = styled.div`
     padding : 20px;
@@ -25,6 +25,7 @@ const Input = styled.input`
 const SearchPresenter=({handleSubmit , searchData :{movieData, tvData}, error, loading})=>{
 
 console.log(movieData)
+
 
     return(
 
@@ -64,6 +65,9 @@ console.log(movieData)
             )}
             </Section>
             }
+            {error && <Massage text={error} color="red"></Massage>}
+            {tvData && movieData && tvData.length === 0  && movieData.length===0 &&
+            <Massage text="No Search Result..." color="yellow"></Massage>}
              
         </>
         }
